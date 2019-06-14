@@ -1,0 +1,43 @@
+* What is this?
+
+This repository includes the design files and code for a eurorack-format digital audio oscillator.
+
+* What's special about this digital oscillator?
+
+Unlike other digital oscillators, this has very low aliasing.  This is achieved by running at a very high sampling rate (megahertz range, depending on target output pitch).
+
+Also, many unusual waveforms, such as "comb" waveforms or "variable pulse saw" waveforms can be output.
+
+The basic design and the output waveforms available are inspired closely (but not precisely) by Roland's Alpha Juno line of synthesizers.
+
+* Project structure
+
+The four-layer circuit board was designed using [[http://kicad-pcb.org][kicad]] and is available in the ~pcb~ subfolder.
+
+Code for the arduino (which is reponsible for interfacing with the A/D converter for CV signals) is in the ~arduino~ folder.
+
+Code for the fpga is written in [[https://clash-lang.org][clash]] and available in the ~src~ folder.
+
+Panel design files are in the ~panel~ folder.
+
+Scripts to design the tuning table are in the ~design~ folder.
+
+This is the code for a digital oscillator core of a hardware synthesizer NCO developed in clash and arduino.  The oscillator is inspired by the Alpha Juno line of synthesizers by Roland.
+
+* Tips for building/running
+
+Note that this is a fairly advanced build and should be considered a "build at your own risk" type affair.
+
+verilog code for the FPGA can be built by running the ~build.sh~ script in the ~src~ folder.  To program the FPGA, you'll need to use Lattice's tools available on [[http://www.latticesemi.com][their website]].  Note that you'll also need to include the ~lattice_alpha.lpf~ which locates the pins.
+
+To run the test suite for the FPGA code, run ~test.sh~ in the ~src~ folder.
+
+Note that some fuses on the arduino need to be set, specifically the "clock out" fuse.  This can be programmed with the following one-liner:
+
+#+begin_src bash
+avrdude -c avrispmkii -p m328p -U lfuse:w:0xB7:m
+#+end_src
+
+* License
+
+Distributed under the terms of the GPLv3 (available in COPYING).  By contributing to this project, you agree to license your contribution under those terms.

@@ -1,0 +1,7 @@
+* Assembly errors (not going to fix)
+ - Saw lsb is stuck high due to pins 9 and 10 being bridged - this is due to a bogus pad so would be hard to fix.
+ - Ditto saw bit 5 (near LSB) is stuck low due to crazy assembly error
+ - So, switched saw (which actually needs all bits) with SUB (which doesn't).
+* Stuff left to do [0/1]
+ - [ ] PROJECT DOCUMENTATION!
+

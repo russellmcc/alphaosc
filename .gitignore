@@ -1,0 +1,15 @@
+src/verilog
+*.out
+*.hi
+*.hi
+*.o
+test/Main
+.HTF
+*.bak
+*.bck
+
+.DS_Store
+.ipynb_checkpoints
+_autosave*
+*-bak
+src/test/Main
